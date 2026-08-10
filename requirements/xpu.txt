@@ -1,7 +1,7 @@
 # Common dependencies
 -r common.txt
 
-ray>=2.9
+ray==2.56.0
 cmake>=3.26.1
 packaging>=24.2
 setuptools-scm>=8

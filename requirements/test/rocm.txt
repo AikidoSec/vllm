@@ -467,8 +467,10 @@ lxml==6.0.2
     #   blobfile
     #   gpt-oss
     #   sacrebleu
-mako==1.3.10
-    # via alembic
+mako==1.3.12
+    # via
+    #   -r rocm.in
+    #   alembic
 markdown-it-py==4.0.0
     # via rich
 markupsafe==3.0.3

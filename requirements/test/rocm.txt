@@ -164,7 +164,7 @@ cupy-cuda12x==14.2.0
     # via ray
 cycler==0.12.1
     # via matplotlib
-datamodel-code-generator==0.55.0
+datamodel-code-generator==0.64.0
     # via -r rocm.in
 dataproperty==1.1.0
     # via

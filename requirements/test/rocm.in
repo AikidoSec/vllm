@@ -1,5 +1,6 @@
 -r ../common.txt
 mcp==1.28.1
+mako==1.3.12
 
 # testing
 pytest

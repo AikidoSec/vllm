@@ -1,4 +1,6 @@
 -r ../common.txt
+mcp==1.28.1
+mako==1.3.12
 
 # testing
 pytest
@@ -32,7 +34,7 @@ matplotlib # required for qwen-vl test
 mistral_common[image,audio]>=1.11.5 # required for voxtral test
 num2words # required for smolvlm test
 open_clip_torch==2.32.0 # Required for nemotron_vl test, Nemotron Parse in test_common.py
-datamodel_code_generator # required for minicpm3 test
+datamodel_code_generator==0.64.0 # required for minicpm3 test
 lm-eval[api]>=0.4.12 # required for model evaluation test
 mteb[bm25s]>=2, <3 # required for mteb test
 transformers==5.5.3

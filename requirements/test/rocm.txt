@@ -1084,7 +1084,7 @@ sentry-sdk==2.55.0
     # via fastapi-cloud-cli
 setproctitle==1.3.7
     # via -r ../common.txt
-setuptools==79.0.1
+setuptools==83.0.0
     # via
     #   -r ../common.txt
     #   model-hosting-container-standards

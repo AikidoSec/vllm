@@ -1,6 +1,7 @@
 -r ../common.txt
 mcp==1.28.1
 mako==1.3.12
+msgpack==1.2.1
 
 # testing
 pytest
@@ -13,20 +14,30 @@ pytest-timeout
 pytest-cov
 
 # testing utils
+anyio==4.14.2
+pygments==2.20.0
+pydantic-settings==2.14.2
+lxml==6.1.0
 albumentations # required for Nemotron Parse in test_common.py
 av # required for audio_in_video tests
 backoff # required for phi4mm test
 blobfile # required for kimi-vl test
 httpx
+h2==4.4.1
+urllib3==2.8.0
+idna==3.15
+python-multipart==0.0.31
 librosa # required for audio tests
 vector_quantize_pytorch # required for minicpmo_26 test
 vocos # required for minicpmo_26 test
 peft>=0.15.0 # required for phi-4-mm test
 pqdm
-ray[cgraph,default]>=2.48.0 # Ray Compiled Graph, required by pipeline parallelism tests
+ray[cgraph,default]==2.56.0 # Ray Compiled Graph, required by pipeline parallelism tests
 sentence-transformers>=5.2.0 # required for embedding tests
 soundfile # required for audio tests
 jiwer # required for audio tests
+nltk==3.10.0
+pyjwt==2.15.0
 tblib # for pickling test exceptions
 timm>=1.0.17 # required for internvl and gemma3n-mm test
 transformers_stream_generator # required for qwen-vl test
@@ -80,6 +91,7 @@ datasets>=3.3.0,<=3.6.0
 
 openpyxl # required for perf comparison excel report
 plotly # required for perf comparison html report
+pyasn1==0.6.4
 
 # ROCm-specific extras (not in CUDA cuda.in)
 rapidfuzz

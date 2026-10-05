@@ -2,13 +2,15 @@
 
 # --- Test Infrastructure ---
 tblib
-pytest
+pytest==9.0.3
 pytest_asyncio
+anyio==4.14.2
 pytest-timeout
 pytest-cov
 pytest-forked
 pytest-rerunfailures
 pytest-shard
+idna==3.15
 
 # --- Core Tools & Bindings ---
 
@@ -34,10 +36,15 @@ jiwer
 bm25s
 pystemmer
 mteb[bm25s]>=2, <3 # required for mteb test
+nltk==3.10.0
 num2words
 pqdm
+pyjwt==2.15.0
+urllib3==2.8.0
+lxml==6.1.0
 
 # --- Vision & Multimodal ---
+pillow==12.3.0
 timm
 albumentations
 mistral-common[image,audio]

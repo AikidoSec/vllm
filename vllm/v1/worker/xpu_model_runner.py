@@ -11,6 +11,7 @@ from vllm.v1.worker.gpu.model_runner import (
     GPUModelRunner as GPUModelRunnerV2,
 )
 from vllm.v1.worker.gpu_model_runner import GPUModelRunner
+from vllm.v1.worker.mm_encoder_model_runner import MMEncoderModelRunner
 
 
 class XPUModelRunner(GPUModelRunner):
@@ -39,6 +40,18 @@ class XPUModelRunnerV2(GPUModelRunnerV2):
             super().__init__(vllm_config, device)
 
 
+class XPUMMEncoderModelRunner(MMEncoderModelRunner):
+    """An encoder-only model runner for XPU devices."""
+
+    def __init__(
+        self,
+        vllm_config: VllmConfig,
+        device: torch.device,
+    ):
+        with _torch_cuda_wrapper():
+            super().__init__(vllm_config, device)
+
+
 @contextmanager
 def _torch_cuda_wrapper():
     # Replace cuda APIs with xpu APIs. Each callable gets its own functools.partial
@@ -49,9 +62,16 @@ def _torch_cuda_wrapper():
     torch.cuda.current_stream = partial(torch.xpu.current_stream)
     torch.cuda.stream = partial(torch.xpu.stream)
     torch.cuda.set_stream = partial(torch.xpu.set_stream)
-    torch.cuda.Event = partial(torch.xpu.Event)
+
+    # torch.xpu.Event does not accept the ``blocking`` kwarg that
+    # torch.cuda.Event supports, so drop it here.
+    def _xpu_event(*args, blocking=None, **kwargs):
+        return torch.xpu.Event(*args, **kwargs)
+
+    torch.cuda.Event = _xpu_event
     if supports_xpu_graph():
         torch.cuda.graph = partial(torch.xpu.graph)
         torch.cuda.CUDAGraph = torch.xpu.XPUGraph
         torch.cuda.graph_pool_handle = partial(torch.xpu.graph_pool_handle)
+        torch.cuda.is_current_stream_capturing = torch.xpu.is_current_stream_capturing
     yield
